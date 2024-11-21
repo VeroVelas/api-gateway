@@ -7,7 +7,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const http_proxy_middleware_1 = require("http-proxy-middleware");
 const app = (0, express_1.default)();
-const PORT = 3000;
+const PORT = 3002;
 app.use(express_1.default.json());
 // Health Check del Gateway
 app.get("/health", (req, res) => {

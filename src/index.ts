@@ -3,7 +3,7 @@ import express from "express";
 import { createProxyMiddleware } from "http-proxy-middleware";
 
 const app = express();
-const PORT = 3002;
+const PORT = 3004;
 
 app.use(express.json());
 
