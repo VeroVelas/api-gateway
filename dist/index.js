@@ -7,12 +7,27 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const http_proxy_middleware_1 = require("http-proxy-middleware");
 const app = (0, express_1.default)();
-const PORT = 3002;
+const PORT = 3004;
 app.use(express_1.default.json());
-// Health Check del Gateway
 app.get("/health", (req, res) => {
-    res.status(200).send("API Gateway is healthy!");
+    res.status(200).send("Health Check OK!");
 });
+app.get("/", (req, res) => {
+    res.status(200).send("Root Path OK!");
+});
+// Ruta para pedidos
+app.get("/pedidos", (req, res) => {
+    res.status(200).send("Pedidos Service is running!");
+});
+// Ruta para usuario
+app.get("/usuarios", (req, res) => {
+    res.status(200).send("Pedidos usuarios is running!");
+});
+// Proxy para el servicio de pedidos
+app.use("/pedidos", (0, http_proxy_middleware_1.createProxyMiddleware)({
+    target: "http://localhost:3004", // Dirección del backend de pedidos
+    changeOrigin: true,
+}));
 // Proxy para el servicio de usuarios
 app.use("/usuarios", (0, http_proxy_middleware_1.createProxyMiddleware)({
     target: "http://localhost:3001", // Dirección del servicio de usuarios

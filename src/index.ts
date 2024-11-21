@@ -7,10 +7,31 @@ const PORT = 3004;
 
 app.use(express.json());
 
-// Health Check del Gateway
 app.get("/health", (req, res) => {
-  res.status(200).send("API Gateway is healthy!");
+  res.status(200).send("Health Check OK!");
 });
+
+app.get("/", (req, res) => {
+  res.status(200).send("Root Path OK!");
+});
+
+// Ruta para pedidos
+app.get("/pedidos", (req, res) => {
+    res.status(200).send("Pedidos Service is running!");
+});
+// Ruta para usuario
+app.get("/usuarios", (req, res) => {
+  res.status(200).send("Pedidos usuarios is running!");
+});
+
+// Proxy para el servicio de pedidos
+app.use(
+  "/pedidos",
+  createProxyMiddleware({
+      target: "http://localhost:3004", // Dirección del backend de pedidos
+      changeOrigin: true,
+  })
+);
 
 // Proxy para el servicio de usuarios
 app.use(
