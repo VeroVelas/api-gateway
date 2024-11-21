@@ -1,7 +1,7 @@
 // src/infrastructure/routes/orderRoutes.ts
 import { Router } from "express";
 import { OrderController } from "../controllers/OrderController";
-import { MySQLOrderRepository } from "../repositories/MongoOrderRepository";
+import { MySQLOrderRepository } from "../repositories/MysQLOrderRepository";
 import { CreateOrderUseCase } from "../../application/useCases/CreateOrderUseCase";
 import db from "../../infrastructure/db";
 
