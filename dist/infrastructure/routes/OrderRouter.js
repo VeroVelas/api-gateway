@@ -6,11 +6,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // src/infrastructure/routes/orderRoutes.ts
 const express_1 = require("express");
 const OrderController_1 = require("../controllers/OrderController");
-const MongoOrderRepository_1 = require("../repositories/MongoOrderRepository");
+const MysQLOrderRepository_1 = require("../repositories/MysQLOrderRepository");
 const CreateOrderUseCase_1 = require("../../application/useCases/CreateOrderUseCase");
 const db_1 = __importDefault(require("../../infrastructure/db"));
 const orderRoutes = (0, express_1.Router)();
-const orderRepository = new MongoOrderRepository_1.MySQLOrderRepository(db_1.default);
+const orderRepository = new MysQLOrderRepository_1.MySQLOrderRepository(db_1.default);
 const createOrderUseCase = new CreateOrderUseCase_1.CreateOrderUseCase(orderRepository);
 const orderController = new OrderController_1.OrderController(createOrderUseCase); // Cambié "OrderController" por "orderController"
 orderRoutes.post("/", (req, res) => orderController.create(req, res)); // También usé "orderController"
